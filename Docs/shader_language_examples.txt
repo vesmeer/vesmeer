@@ -1,0 +1,42 @@
+<script id="sky-vertex" type="application/x-glsl">
+    varying vec2 vUV;
+    varying float vDensity;
+    varying float vDiff;
+    void main() {
+        vUV = uv;
+        vec4 pos = vec4(position, 1.0);
+        gl_Position = projectionMatrix * modelViewMatrix * pos;
+    }
+</script>
+
+<script id="sky-density" type="application/x-glsl">
+    uniform sampler2D texture;
+    varying vec2 vUV;
+    void main() {
+        vec4 sample = texture2D(texture, vUV);
+        gl_FragColor = vec4(sample.xyz, sample.w);
+    }
+</script>
+
+-------------------------------------------------------------------
+
+<script type="x-shader/x-fragment" id="fShader">
+
+    #ifdef GL_ES
+    precision highp float;
+    #endif
+
+    varying vec2 vUv;
+    varying vec3 vNormal;
+    
+    void main()
+    {
+        //vec3 light = vec3(-0.5, -0.5, -0.5);
+        //float dProd = max(0.0, dot(light, vNormal));
+        gl_FragColor = vec4(vec3(vUv, 0.0), 0.8);
+        //gl_FragColor = vec4(vec3(dProd, dProd, dProd), 1.0);
+    }
+
+</script>
+
+-------------------------------------------------------------------

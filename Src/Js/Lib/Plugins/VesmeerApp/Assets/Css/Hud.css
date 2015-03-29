@@ -1,0 +1,104 @@
+.hud-panel { 
+    position: absolute; 
+    line-height: 130%;
+    background: black; 
+    opacity: 0.6; 
+    font-size: 0.6em; 
+    display: none;
+    padding: 1em;
+}
+#hud-message-bottom {
+    color: #fff;
+    opacity: 0.6; 
+    font-size: 0.8em; 
+    line-height: 110%;
+    padding: 1em;
+}
+#hud-message-center {
+    position: absolute;
+    z-index: 102;
+    color: #fff;
+    background: black;
+    opacity: 0.8; 
+    font-size: 0.8em; 
+    line-height: 110%;
+    padding: 1em;
+    display: none;
+}
+/*Target*/
+#hud-panel-cell1 {
+    left: 0px;
+    top: 0px;
+    width: 110px;
+}
+/*Time*/
+#hud-panel-cell2 {
+    right: 0px;
+    top: 0px;
+}
+/*Position*/
+#hud-panel-cell3 {
+    right: 0px;
+    bottom: 0px;
+    width: 130px;
+}
+/*Speed*/
+#hud-panel-cell4 {
+    right: 160px;
+    bottom: 0px;
+    width: 100px;
+}
+/*Distance*/
+#hud-panel-cell5 {
+    top: 0px;
+    left: 140px;
+}
+/*Following*/
+#hud-panel-cell6 {
+    bottom: 0px;
+    left: 90px;
+    width: 90px;
+}
+/*Tracking*/
+#hud-panel-cell7 {
+    bottom: 0px;
+    left: 210px;
+    width: 90px;
+}
+#object-info { 
+    position: absolute; 
+    z-index: 101; 
+    opacity: 0.7; 
+    background: black; 
+    padding: 2em 3em;  
+    font-size: 0.65em;
+    color: #ffffff;
+    display: none;
+    max-width: 40%;
+    max-height: 90%;
+}
+#object-info td {
+    margin: 0em 1em;
+}
+#object-info .section-title {
+    font-weight: bold;
+    color: #FFFFFF;
+}
+#help-panel {
+    position: absolute;
+    background: black;
+    z-index: 101;
+    opacity: 0.7;
+    padding: 2em 3em;
+    font-size: 0.7em;
+    max-width: 70%;
+    max-height: 90%;
+    display: none;
+}
+#help-panel .key {
+    font-weight: bold;
+    padding-right: 3em;
+}
+#help-panel .value {
+    padding-right: 5em;
+}

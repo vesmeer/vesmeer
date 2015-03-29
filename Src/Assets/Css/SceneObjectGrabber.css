@@ -1,0 +1,13 @@
+#SceneObjectGrabber { 
+    position: absolute; 
+    z-index: 101; 
+    opacity: 0.8; 
+    background: black; 
+    padding: 0.5em; 
+    display: none; 
+}
+#SceneObjectGrabber .Suggestions {
+    margin-top: 1em;
+    font-size: 0.7em;
+    color: #02A8A8;
+}

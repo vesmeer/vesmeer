@@ -1,0 +1,13 @@
+Build
+Src/vesmeer.sublime-project
+Src/vesmeer.sublime-workspace
+Src/Config/fabfile_config.py
+Src/Assets/VesmeerApp
+Src/Assets/Styles.css
+Tools
+*fuse_hidden*
+*.pyc
+*.jpg
+*.png
+*.jpg
+*.psd
