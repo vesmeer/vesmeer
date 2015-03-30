@@ -14,7 +14,7 @@ define(
                 surfaceTexture: {
                     type: "t", 
                     value: THREE.ImageUtils.loadTexture(
-                        '/Src/Assets/VesmeerApp/Textures/2-stereoreache.jpg')
+                        'Assets/VesmeerApp/Textures/2-stereoreache.jpg')
                 },
                 time: {
                     type: "f", 

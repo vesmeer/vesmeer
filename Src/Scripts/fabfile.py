@@ -17,8 +17,9 @@ env.user = SERVER_USERNAME
 env.forward_agent = FORWARD_AGENT
 env.config_dir = CONFIG_DIR
 env.build_dir = BUILD_DIR
+env.server_app_root_dir = SERVER_APP_ROOT_DIR
 
-def to_bool(boolean):
+def _to_bool(boolean):
     """
     Converts string representation of boolean True/False
     to boolean values.
@@ -112,42 +113,15 @@ def _merge_css_files():
     f.close()
 
 
-# def deploy_toy(include_db_export = 'False'):
-#     """
-#     Deploys the content of the staging git branch to the staging
-#     server. If include_db_export is True, the local development
-#     database will be exported and deployed to the staging server
-#     as well.
-#     """
-#     include_db_export = to_bool(include_db_export)
+def deploy_production():
+    """
+    Deploys the application to the production environment.
+    """
+    build()
 
-#     if include_db_export == True:
-#         local('./export_dev_db.sh')
-    
-#     toy_installation_server_path = '/srv/www/toy.jewbilation.com'
-#     db_export_file_server_path = os.path.join(
-#         toy_installation_server_path,
-#         '/srv/www/toy.jewbilation.com/database/jewbilation.sql.tar.gz'
-#     )
-#     sudo('mkdir -p %s' % toy_installation_server_path)
-#     with cd(toy_installation_server_path):
-#         if run(
-#             'if [ -e %s ]; then echo "1"; else echo "0"; fi' %
-#             os.path.join(toy_installation_server_path, ".git")
-#         ) == "1":
-#             sudo('git pull origin toy')
-#         else:
-#             sudo('git clone -b %s %s %s' % (
-#                 'toy', 
-#                 '/srv/gitrepos/jewbilation.git',
-#                 toy_installation_server_path
-#             ))
-#         sudo('chown -R petr:www-data %s' % toy_installation_server_path)
-#         if include_db_export == True:
-#             local('rsync -avz --progress '
-#                 '../database/jewbilation.sql.tar.gz '
-#                 'petr@jewbilation.com:%s' % db_export_file_server_path)
+    sudo('mkdir -p %s' % env.server_app_root_dir)
+    with cd(env.server_app_root_dir):
+        local('rsync -avz ' + env.build_dir + 
+            '/* petr@vesmeer.com:' + env.server_app_root_dir)
+        sudo('chown -R www-data:www-data %s' % env.server_app_root_dir)
         
-#     with cd(os.path.join(toy_installation_server_path, '_provision')):
-#         sudo('puppet apply puppet/manifests/toy/ '
-#             '--modulepath=puppet/modules/ --verbose', shell=True)
