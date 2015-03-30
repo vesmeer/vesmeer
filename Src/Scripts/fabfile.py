@@ -53,10 +53,21 @@ def _create_index_file():
     html += '<head>' + os.linesep
     html += '   <title>Vesmeer</title>' + os.linesep
     html += '   <link rel="stylesheet" type="text/css" href="Assets/Styles.css">' + os.linesep
+    html += '   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />' + os.linesep
+    html += '   <meta http-equiv="Pragma" content="no-cache" />' + os.linesep
+    html += '   <meta http-equiv="Expires" content="0" />' + os.linesep
     html += '   <script src="require.js"></script>' + os.linesep
     html += '   <script src="Vesmeer.js"></script>' + os.linesep
     html += '</head>' + os.linesep
     html += '<body>' + os.linesep
+    html += '<script>' + os.linesep
+    html += "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" + os.linesep
+    html += "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," + os.linesep
+    html += "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" + os.linesep
+    html += "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');" + os.linesep
+    html += "ga('create', 'UA-26611884-5', 'auto');" + os.linesep
+    html += "ga('send', 'pageview');" + os.linesep
+    html += '</script>' + os.linesep
     html += '</body>' + os.linesep
     html += '</html>' + os.linesep
     f = open(os.path.join(env.build_dir, 'index.html'), "w")
@@ -117,10 +128,12 @@ def deploy_production():
     """
     Deploys the application to the production environment.
     """
+    install_assets()
     build()
 
     sudo('mkdir -p %s' % env.server_app_root_dir)
     with cd(env.server_app_root_dir):
+        sudo('chown -R ' + env.user + ':www-data %s' % env.server_app_root_dir)
         local('rsync -avz ' + env.build_dir + 
             '/* petr@vesmeer.com:' + env.server_app_root_dir)
         sudo('chown -R www-data:www-data %s' % env.server_app_root_dir)

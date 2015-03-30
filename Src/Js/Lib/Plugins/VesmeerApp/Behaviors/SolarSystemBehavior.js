@@ -61,7 +61,7 @@ define(
                 this.rootSceneObject,
                 Settings.ROOT_SCENE_OBJECT_NAME + '.SaturnLight',
                 this.saturn, 
-                0.8,
+                0.9,
                 0.5
             );
             this.saturnSunLight = this.scene.findObjectByName(

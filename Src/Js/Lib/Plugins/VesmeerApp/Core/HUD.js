@@ -20,7 +20,7 @@ define(
         }
 
         /* Available message window positions. */
-        HUD.MESSAGE_POSITION = { CENTER: 1, BOTTOM: 2 };
+        HUD.MESSAGE_POSITION = { CENTER: 1, BOTTOM: 2, TOP: 3 };
 
         HUD.prototype.show = function() {
             $(".hud-panel").show();
@@ -77,6 +77,9 @@ define(
                 case HUD.MESSAGE_POSITION.BOTTOM:
                     this.showMessageAtBottom(text, durationMs, size);
                     break;
+                case HUD.MESSAGE_POSITION.TOP:
+                    this.showMessageAtTop(text, durationMs, size);
+                    break;
             }
         }
 
@@ -98,6 +101,28 @@ define(
             $("#hud-message-bottom").stop();
             $("#hud-message-bottom").html(text);
             $("#hud-message-bottom").show(0).delay(durationMs).hide(0, function() {
+                self.deleteData('message-box');
+            });
+        }
+
+        /**
+         * Shows a brief message at the HUD top and hides it after 
+         * durationMs milisconds.
+         */
+        HUD.prototype.showMessageAtTop = function(text, durationMs, size) {
+            if (size === undefined) 
+                var size = { width: 200, height: 30 }
+            var self = this;
+            var posLeft = window.innerWidth / 2.0 - size.width / 2.0;
+            $("#hud-message-top").css({
+                "min-width": size.width + "px",
+                "min-height": size.height + "px",
+                "top": "0px",
+                "left": posLeft + "px"
+            });
+            $("#hud-message-top").stop();
+            $("#hud-message-top").html(text);
+            $("#hud-message-top").show(0).delay(durationMs).hide(0, function() {
                 self.deleteData('message-box');
             });
         }

@@ -102,3 +102,19 @@
 #help-panel .value {
     padding-right: 5em;
 }
+#fork-me-github {
+    width: 110px;
+    text-align: center;
+    font-size: 0.5em;
+    top: 0;
+    margin: auto;
+    color: #fff;
+}
+#fork-me-github a {
+    color: #fff;
+    text-decoration: none;
+}
+#fork-me-github a:hover {
+    color: #fff;
+    text-decoration: underline;
+}

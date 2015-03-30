@@ -41,7 +41,9 @@
                 "keydown", 
                 this._onKeyDown
             );
-            this._scene.setSelectedObject(this._sun);      
+            this._scene.setSelectedObject(this._sun);
+            this._earth = this._scene.findObjectByName(
+                'VesmeerApp.StarDome.SolarSystem.Earth');
             this._positionCamera();
 
             var self = this;
@@ -50,7 +52,22 @@
                     'Press the H key for help', 
                     10000,
                     HUD.MESSAGE_POSITION.CENTER);
-            }, 3000);
+            }, 4000);
+
+            this._showForkMeOnGitHub();
+        }
+
+        CameraBehavior.prototype._showForkMeOnGitHub = function() {
+            $("body").append('<div id="fork-me-github" class="hud-panel"></div>');
+            var width = $("#fork-me-github").width();
+            var posLeft = window.innerWidth / 2.0 - width / 2.0;
+            $("#fork-me-github").css({
+                "left": posLeft + "px",
+            });
+            $("#fork-me-github").stop();
+            $("#fork-me-github").html(
+                '<a href="https://github.com/vesmeer/vesmeer" target="_new">Fork me on GitHub</a>');
+            $("#fork-me-github").show(0);
         }
 
         CameraBehavior.prototype._initObjects = function() {
@@ -74,17 +91,12 @@
         }
 
         CameraBehavior.prototype._positionCamera = function() {
+            this._positionCameraNearSun();
+            this._positionCameraNearEarth();
+        }
+
+        CameraBehavior.prototype._positionCameraNearSun = function() {
             this._camera.up = new THREE.Vector3(0, 1, 0);
-            // this._camera.position.set(
-            //     Unit.dist(15000), 
-            //     Unit.dist(10000),
-            //     Unit.dist(149575000)
-            // );
-            // this._camera.position.set(
-            //     Unit.dist(15000), 
-            //     Unit.dist(10000),
-            //     Unit.dist(1500000*3)
-            // );
 
             // This initial position of the camera has to be set to non-zero
             // value because otherwise determining the camera looking 
@@ -102,6 +114,17 @@
                     Unit.dist(1500000 * 3)
                 )
             );
+        }
+
+        CameraBehavior.prototype._positionCameraNearEarth = function() {
+            var self = this;
+            setTimeout(function() {
+                self._scene.setSelectedObject(self._earth);
+                self._cameraControls.goToObject(
+                    self._scene.getSelectedObject(),
+                    null
+                );
+            }, 5000);
         }
 
         CameraBehavior.prototype.onKeyDown = function(event) {
