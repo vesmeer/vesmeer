@@ -13,7 +13,7 @@ Vesmeer is a universe simulator built using THREE.js, running in a browser. At t
 * Start working on internal API.
 
 ### How to contribute?
-If you'd like to contribute to the project, please, feel welcome to fork the repository. If you'd need help with anything, let me know in the issues section.
+If you'd like to contribute to the project, please, feel welcome to fork the repository. If you'd need help with anything, let me know in the issues section or write a message on the product facebook page https://www.facebook.com/vesmeer.
 
 ### License
 This software is provided under the GNU GPL version 3.0 license
