@@ -1,4 +1,5 @@
-# Vesmeer
+# Vesmeer: Space simulator running in your browser
+
 Welcome to the Vesmeer.com Space Simulator project.
 
 If you'd like to contribute to the project, please, feel welcome to fork the repository. If you'd need help with anything, let me know in the issues section.
