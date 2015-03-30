@@ -1,7 +1,7 @@
 # Vesmeer
 Welcome to the Vesmeer.com Space Simulator project.
 
-# What is Vesmeer?
+### What is Vesmeer?
 Vesmeer is a universe simulator built using THREE.js, running in a browser. At the moment, the software covers the major bodies of the solar system. Much more is to come...
 
 ### Things that should be worked on next
