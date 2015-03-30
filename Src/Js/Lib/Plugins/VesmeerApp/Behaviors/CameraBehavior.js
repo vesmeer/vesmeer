@@ -44,14 +44,19 @@
             this._scene.setSelectedObject(this._sun);
             this._earth = this._scene.findObjectByName(
                 'VesmeerApp.StarDome.SolarSystem.Earth');
-            this._positionCamera();
+            this._positionCameraNearSun();
 
             var self = this;
-            setTimeout(function() {
-                self._hud.showMessage(
-                    'Press the H key for help', 
-                    10000,
-                    HUD.MESSAGE_POSITION.CENTER);
+            var interval = setInterval(function() {
+                if (self._scene.isLoaded()) {
+                    self._hud.showMessage(
+                        'Press the H key for help', 
+                        10000,
+                        HUD.MESSAGE_POSITION.CENTER
+                    );
+                    self._positionCameraNearEarth();
+                    clearInterval(interval);
+                }
             }, 4000);
 
             this._showForkMeOnGitHub();
@@ -90,11 +95,6 @@
             this._accelerationFactor.backward = 1;
         }
 
-        CameraBehavior.prototype._positionCamera = function() {
-            this._positionCameraNearSun();
-            this._positionCameraNearEarth();
-        }
-
         CameraBehavior.prototype._positionCameraNearSun = function() {
             this._camera.up = new THREE.Vector3(0, 1, 0);
 
@@ -124,7 +124,7 @@
                     self._scene.getSelectedObject(),
                     null
                 );
-            }, 5000);
+            }, 2000);
         }
 
         CameraBehavior.prototype.onKeyDown = function(event) {

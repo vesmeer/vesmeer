@@ -124,6 +124,7 @@ define(
                 if (loaded === total) {
                     LoadSplashScreen.hide();
                     animate();
+                    _this._scene.setLoaded(true);
                 }
             };
         }
