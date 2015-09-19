@@ -59,20 +59,6 @@
                 }
             }, 4000);
 
-            this._showForkMeOnGitHub();
-        }
-
-        CameraBehavior.prototype._showForkMeOnGitHub = function() {
-            $("body").append('<div id="fork-me-github" class="hud-panel"></div>');
-            var width = $("#fork-me-github").width();
-            var posLeft = window.innerWidth / 2.0 - width / 2.0;
-            $("#fork-me-github").css({
-                "left": posLeft + "px",
-            });
-            $("#fork-me-github").stop();
-            $("#fork-me-github").html(
-                '<a href="https://github.com/vesmeer/vesmeer" target="_new">Fork me on GitHub</a>');
-            $("#fork-me-github").show(0);
         }
 
         CameraBehavior.prototype._initObjects = function() {
